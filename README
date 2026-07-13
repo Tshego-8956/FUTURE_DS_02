@@ -1,0 +1,34 @@
+# SaaS and Subscription Retention Analytics Suite
+
+## Overview
+
+This project is a professional Streamlit Business Intelligence dashboard developed using the Telco Customer Churn dataset.
+
+The dashboard provides insights into:
+
+- Churn rates and retention trends
+- Customer cohorts by signup tenure and lifecycle stage
+- Customer lifetime patterns and LTV dynamics
+- Key retention drivers and structural risk factors
+- Business KPIs and financial health metrics
+
+
+
+## Features
+
+- Interactive Filters (Contract, Tech Infrastructure, Billing Mix)
+- KPI Cards (Active Subscriptions, Gross Churn, MRR At Risk, Avg LTV)
+- Responsive Layout
+- Plotly Visualisations (Bar charts, survival distributions, pricing box plots)
+- Customer Analytics
+- Product Analytics
+- Business Recommendations and Operational Save-List Pipeline
+
+
+
+## Installation
+
+```bash
+pip install streamlit pandas plotly openpyxl
+
+streamlit run app_1.py
