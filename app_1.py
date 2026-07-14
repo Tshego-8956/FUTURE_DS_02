@@ -72,7 +72,7 @@ df = load_and_preprocess_data()
 # -----------------------------------------------------------------------------
 # 3. GLOBAL CONTROLS (SIDEBAR)
 # -----------------------------------------------------------------------------
-st.sidebar.image("https://img.icons8.com/external-flat-icons-inmotus-design/64/000000/external-Analysis-system-analysis-flat-icons-inmotus-design.png", width=60)
+
 st.sidebar.title("Strategic Filters")
 st.sidebar.markdown("Slice customer portfolios across key commercial dimensions:")
 
@@ -107,14 +107,42 @@ avg_lifetime_value = filtered_df['TotalCharges'].mean()
 
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    st.markdown(f'<div class="metric-card"><h5>Active Subscriptions</h5><h2>{total_subscribers:,}</h2><p style="color:gray; font-size:12px;">Total Account Coverage</p></div>', unsafe_allow_html=True)
+    st.markdown(f'''
+        <div class="metric-card">
+            <h5>Active Subscriptions</h5>
+            <h2 style="color: #000000 !important;">{total_subscribers:,}</h2>
+            <p>Total Account Coverage</p>
+        </div>
+    ''', unsafe_allow_html=True)
+
 with col2:
-    color = "red" if churn_rate > 20 else "green"
-    st.markdown(f'<div class="metric-card"><h5>Gross Churn Rate</h5><h2 style="color:{color};">{churn_rate:.2f}%</h2><p style="color:gray; font-size:12px;">Target Baseline: &lt; 5.0%</p></div>', unsafe_allow_html=True)
+    # Set dynamic alert color: red for high-risk churn, green for healthy baseline
+    churn_color = "#DC2626" if churn_rate > 20 else "#16A34A"
+    st.markdown(f'''
+        <div class="metric-card">
+            <h5>Gross Churn Rate</h5>
+            <h2 style="color: {churn_color} !important;">{churn_rate:.2f}%</h2>
+            <p>Target Baseline: &lt; 5.0%</p>
+        </div>
+    ''', unsafe_allow_html=True)
+
 with col3:
-    st.markdown(f'<div class="metric-card"><h5>MRR Leaking At Risk</h5><h2 style="color:#DC2626;">${mrr_at_risk:,.2f}</h2><p style="color:gray; font-size:12px;">Monthly Charges on Churned Accounts</p></div>', unsafe_allow_html=True)
+    st.markdown(f'''
+        <div class="metric-card">
+            <h5>MRR Leaking At Risk</h5>
+            <h2 style="color: #DC2626 !important;">${mrr_at_risk:,.2f}</h2>
+            <p>Monthly Charges on Churned Accounts</p>
+        </div>
+    ''', unsafe_allow_html=True)
+
 with col4:
-    st.markdown(f'<div class="metric-card"><h5>Average LTV</h5><h2 style="color:#16A34A;">${avg_lifetime_value:,.2f}</h2><p style="color:gray; font-size:12px;">Realized Contract Lifetime Value</p></div>', unsafe_allow_html=True)
+    st.markdown(f'''
+        <div class="metric-card">
+            <h5>Average LTV</h5>
+            <h2 style="color: #16A34A !important;">${avg_lifetime_value:,.2f}</h2>
+            <p>Realized Contract Lifetime Value</p>
+        </div>
+    ''', unsafe_allow_html=True)
 
 st.markdown("---")
 
